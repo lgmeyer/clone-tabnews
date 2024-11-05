@@ -6,7 +6,7 @@ test("GET /api/v1/status", async () => {
 
   const parsedUpdatedAt = new Date(responseBody.updated_at).toISOString();
   expect(responseBody.updated_at).toEqual(parsedUpdatedAt)
-  expect(responseBody.postgres_version).toBeDefined();
-  expect(typeof responseBody.max_conextions).toBe('number');
-  expect(typeof responseBody.used_connections).toBe('number');
+  expect(responseBody.dependencies.database.version).toEqual("16.0");
+  expect(responseBody.dependencies.database.max_connections).toEqual(100);
+  expect(responseBody.dependencies.database.opened_connections).toBe(1);
 })
